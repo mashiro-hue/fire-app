@@ -1,6 +1,5 @@
 import {
   collection,
-  limit,
   onSnapshot,
   orderBy,
   query,
@@ -27,7 +26,7 @@ const ChatRoom = () => {
 
   useEffect(() => {
     const messageRef = collection(db, "messages");
-    const q = query(messageRef, orderBy("createdAt"), limit(25));
+    const q = query(messageRef, orderBy("createdAt"));
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const messagesList: Message[] = snapshot.docs.map((doc) => ({
